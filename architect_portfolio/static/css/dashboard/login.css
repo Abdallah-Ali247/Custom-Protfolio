@@ -1,0 +1,57 @@
+/* Login Page Styling */
+h2 {
+    color: var(--dash-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: var(--dash-bg-alt);
+    padding: 2rem;
+    border-radius: var(--dash-radius);
+    box-shadow: 0 2px 6px var(--dash-shadow);
+    border: 1px solid var(--dash-border);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dash-text);
+    font-weight: 500;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--dash-border);
+    border-radius: var(--dash-radius);
+    background-color: var(--dash-bg);
+    color: var(--dash-text);
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: var(--dash-primary);
+    outline: none;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--dash-primary);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--dash-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: var(--dash-primary-hover);
+  }
+  

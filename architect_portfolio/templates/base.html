@@ -1,0 +1,155 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
+    <title>{% block title %}Architect Portfolio{% endblock %}</title>
+
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="{% block meta_description %}{{ site_settings.site_title }} - Architect & Interior Designer Portfolio{% endblock %}">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="{% block og_title %}{{ site_settings.site_title }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ site_settings.site_title }} - Architect & Interior Designer Portfolio{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% if site_settings.logo %}
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ site_settings.logo.url }}">
+    {% endif %}
+
+    <!-- Favicon -->
+    {% if site_settings.favicon %}
+        <link rel="icon" href="{{ site_settings.favicon.url }}" type="image/x-icon">
+    {% else %}
+        <link rel="icon" href="{% static 'images/favicon-default.png' %}" type="image/x-icon">
+    {% endif %}
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts - Elven/Mystical Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+
+        <!-- In base.html inside <head> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- Before </body> in base.html -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Custom Styles per Page -->
+    {% block styles %}{% endblock %}
+   
+</head>
+<body class="page {% block body_class %}{% endblock %}">
+
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <!-- Logo - Left -->
+                <div class="logo">
+                    {% if site_settings.logo %}
+                        <a href="/"><img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_title }}" width="100"></a>
+                    {% else %}
+                        <h1><a href="/" class="glow-text">{{ site_settings.site_title }}</a></h1>
+                    {% endif %}
+                </div>
+    
+                <!-- Navigation - Center -->
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/" >🏠 Home</a></li>
+                        <li><a href="{% url 'all_projects' %}">🖼️ Projects</a></li>
+                        <li><a href="{% url 'about' %}">🧙 About</a></li>
+                        <li><a href="{% url 'contact' %}">📬 Contact</a></li>
+                    </ul>
+                </nav>
+    
+                <!-- Auth Links - Right -->
+                <div class="auth-nav">
+                    <ul>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'dashboard_home' %}">🛡️ Dashboard</a></li>
+                            <li><a href="{% url 'dashboard_logout' %}">🚪 Logout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'dashboard_login' %}">🗝️ Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="site-main fade-in">
+        <div class="container">
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Section 1: About / Description -->
+                <div class="footer-about">
+                    <h4>{{ site_settings.site_title }}</h4>
+                    {% if site_settings.about_me %}
+                        <p>{{ site_settings.about_me|truncatewords:20 }}</p>
+                    {% else %}
+                        <p>A portfolio of architectural and interior design work.</p>
+                    {% endif %}
+                </div>
+    
+                <!-- Section 2: Quick Links -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">🏠 Home</a></li>
+                        <li><a href="{% url 'all_projects' %}">🖼️ Projects</a></li>
+                        <li><a href="{% url 'about' %}">🧙 About</a></li>
+                        <li><a href="{% url 'contact' %}">📬 Contact</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'dashboard_home' %}">🛡️ Dashboard</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+    
+                <!-- Section 3: Social Media -->
+                <div class="footer-social">
+                    <h4>Follow Me</h4>
+                    <ul class="social-icons">
+                        {% if site_settings.social_facebook %}
+                            <li><a href="{{ site_settings.social_facebook }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        {% endif %}
+                        {% if site_settings.social_instagram %}
+                            <li><a href="{{ site_settings.social_instagram }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        {% endif %}
+                        {% if site_settings.social_linkedin %}
+                            <li><a href="{{ site_settings.social_linkedin }}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="footer-bottom glow-text">
+                <p>&copy; {{ site_settings.site_title }} {{ year|default:2025 }}</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block title %}{{ page_title }} - Dashboard{% endblock %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dashboard/edit_goals.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2>{{ page_title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div id="goal-items">
+        {% if goal_items %}
+            <!-- Edit Existing Goals -->
+            {% for item in goal_items %}
+                <div class="goal-item-form">
+                    <h4>Goal {{ forloop.counter }}</h4>
+                    <label>Title:</label>
+                    <input type="text" name="title" value="{{ item.title }}" required><br>
+
+                    <label>Description:</label>
+                    <textarea name="description" rows="3" required>{{ item.description }}</textarea><br>
+
+                    <label>Order:</label>
+                    <input type="number" name="order" value="{{ item.order }}" min="0" required><br>
+                </div>
+            {% endfor %}
+        {% else %}
+            <!-- Default Empty Form -->
+            <div class="goal-item-form">
+                <h4>New Goal</h4>
+                <label>Title:</label>
+                <input type="text" name="title" placeholder="e.g., Architectural Design" required><br>
+
+                <label>Description:</label>
+                <textarea name="description" rows="3" placeholder="Describe what this goal is about..." required></textarea><br>
+
+                <label>Order:</label>
+                <input type="number" name="order" value="0" min="0" required><br>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if not goal_items %}
+        <button type="button" id="add-goal">+ Add Another Goal</button>
+    {% endif %}
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<style>
+.goal-item-form {
+    border: 1px solid #444;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #1e1e1e;
+}
+.goal-item-form input,
+.goal-item-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+</style>
+
+<script>
+    document.getElementById('add-goal')?.addEventListener('click', function () {
+        const container = document.getElementById('goal-items');
+        const index = container.children.length + 1;
+
+        const div = document.createElement('div');
+        div.className = 'goal-item-form';
+        div.innerHTML = `
+            <h4>Goal \${index}</h4>
+            <label>Title:</label>
+            <input type="text" name="title" placeholder="e.g., Interior Design" required><br>
+
+            <label>Description:</label>
+            <textarea name="description" rows="3" placeholder="Describe what this goal is about..." required></textarea><br>
+
+            <label>Order:</label>
+            <input type="number" name="order" value="\${index}" min="0" required><br>
+        `;
+        container.appendChild(div);
+    });
+</script>
+{% endblock %}

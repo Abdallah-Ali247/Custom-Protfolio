@@ -1,0 +1,63 @@
+<!-- templates/dashboard/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Dashboard - {{ site_title }}{% endblock %}</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/main.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    {% block styles %}{% endblock %}
+</head>
+<body class="dashboard">
+
+    <header class="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <div class="container">
+            <div class="logo">
+                {% if site_settings.logo %}
+                    <img src="{{ site_settings.logo.url }}" alt="Logo" width="100">
+                {% else %}
+                    <h2>{{ site_settings.site_title }}</h2>
+                {% endif %}
+            </div>
+
+            
+            <nav>
+                <a href="{% url 'dashboard_home' %}">Overview</a>
+                <a href="{% url 'dashboard_projects' %}">Projects</a>
+                <a href="{% url 'dashboard_settings' %}">Site Settings</a>
+                <a href="{% url 'dashboard_cv_upload' %}">CV Upload</a>
+                <a href="{% url 'dashboard_about_edit' %}">Edit About </a>
+                <a href="{% url 'dashboard_goals_edit' %}">Edit Goals</a>
+                {% comment %} <a href="{% url 'dashboard_theme_settings' %}">Theme Settings</a> {% endcomment %}
+                
+                <a href="{% url 'dashboard_logout' %}">Logout</a>
+                <a href="{% url 'homepage' %}">Home</a>
+
+                
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <p>&copy; {{ site_title }} Admin Panel</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

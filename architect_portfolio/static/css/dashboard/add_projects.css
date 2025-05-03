@@ -1,0 +1,167 @@
+:root {
+    /* Dashboard Colors */
+    --dash-bg: #16191f;
+    --dash-bg-alt: #1f232b;
+    --dash-text: #e3e8f0;
+    --dash-primary: #5f6ee0;
+    --dash-primary-hover: #7d89f5;
+    --dash-secondary: #39445a;
+    --dash-accent: #9d77c3;
+  
+    --dash-border: #2c313a;
+    --dash-success: #54d38b;
+    --dash-error: #f36b6b;
+    --dash-warning: #f7b955;
+    --dash-info: #67c3f3;
+  
+    /* UI Elements */
+    --dash-card-bg: #20232a;
+    --dash-hover-bg: #282c34;
+    --dash-input-bg: #262a33;
+    --dash-input-border: #3b404c;
+    --dash-shadow: rgba(0, 0, 0, 0.2);
+    --dash-glow: #8f9dfb;
+  
+    /* Fonts and Layout */
+    --dash-font: 'Segoe UI', sans-serif;
+    --dash-radius: 10px;
+    --dash-transition: 0.3s ease-in-out;
+    --dash-padding: 1.5rem;
+}
+
+/* Base Layout */
+.dashboard {
+    background-color: var(--dash-bg);
+    color: var(--dash-text);
+    font-family: var(--dash-font);
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: var(--dash-primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Form Styles */
+form {
+    background-color: var(--dash-card-bg);
+    border-radius: var(--dash-radius);
+    padding: 2rem;
+    box-shadow: 0 4px 8px var(--dash-shadow);
+    width: 50%;
+    margin: 0 auto;
+    animation: fadeIn 2s ease-in-out;
+}
+
+label {
+    font-size: 1.1rem;
+    color: var(--dash-text);
+    margin-top: 1rem;
+    display: block;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--dash-input-bg);
+    border: 1px solid var(--dash-input-border);
+    border-radius: var(--dash-radius);
+    color: var(--dash-text);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--dash-primary);
+    box-shadow: 0 0 5px var(--dash-primary);
+    outline: none;
+}
+
+/* File Input */
+input[type="file"] {
+    padding: 0.8rem;
+    background-color: var(--dash-input-bg);
+    border: 1px solid var(--dash-input-border);
+    border-radius: var(--dash-radius);
+    color: var(--dash-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: var(--dash-hover-bg);
+    border-color: var(--dash-primary);
+}
+
+/* Tags Input */
+input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--dash-input-bg);
+    border: 1px solid var(--dash-input-border);
+    border-radius: var(--dash-radius);
+    color: var(--dash-text);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: var(--dash-primary);
+    box-shadow: 0 0 5px var(--dash-primary);
+    outline: none;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--dash-primary);
+    color: var(--dash-text);
+    border: none;
+    border-radius: var(--dash-radius);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    box-shadow: 0 4px 8px var(--dash-shadow);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--dash-primary-hover);
+    box-shadow: 0 6px 12px var(--dash-glow);
+    transform: scale(1.05);
+}
+
+/* Hover Glow Effect */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px var(--dash-glow), 0 0 10px var(--dash-glow);
+    }
+    50% {
+        text-shadow: 0 0 15px var(--dash-glow), 0 0 20px var(--dash-glow);
+    }
+    100% {
+        text-shadow: 0 0 5px var(--dash-glow), 0 0 10px var(--dash-glow);
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

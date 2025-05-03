@@ -1,0 +1,46 @@
+<!-- templates/dashboard/projects/list.html -->
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block title %}{{ page_title }} - Dashboard{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dashboard/list_projects.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2>{{ page_title }}</h2>
+
+<a href="{% url 'dashboard_project_add' %}" class="btn">+ Add New Project</a>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if projects %}
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.year }}</td>
+                    <td>{{ project.location }}</td>
+                    <td>{{ project.category }}</td>
+                    <td>
+                        <a href="{% url 'dashboard_project_edit' project.id %}">Edit</a>|
+                        <a href="{% url 'dashboard_project_delete' project.id %}" onclick="return confirm('Are you sure you want to delete this project?')">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5" align="center">No projects found.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home - {{ site_settings.site_title }}{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/user/home.css' %}">
+{% endblock %}
+ 
+{% block content %}
+
+<!-- === Hero Section === -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Welcome to {{ site_settings.site_title }}</h1>
+        <p>{{ site_settings.about_me|default:"Architect & Interior Designer creating modern, elegant spaces." }}</p>
+    </div>
+</section>
+
+
+<!-- === projects Section === -->
+{% if projects %}
+    <div class="projects-grid">
+        {% for project in card_projects %}
+            <div class="project-card">
+                <img src="{{ project.featured_image.url }}" alt="{{ project.title }}">
+                <div class="project-info">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description|truncatewords:20 }}</p>
+                    <div class="project-meta">
+                        Location: {{ project.location }} | Year: {{ project.year }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No projects found.</p>
+{% endif %}
+
+<!-- === Recent Projects Carousel === -->
+
+<!-- === Recent Projects Carousel === -->
+<section class="projects-carousel">
+    <h2>Recent Projects</h2>
+
+    <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+            {% for project in carousel_projects %}
+                <div class="carousel-card">
+                    <img src="{{ project.featured_image.url }}" alt="{{ project.title }}">
+                    <h4>{{ project.title }}</h4>
+                    <p>{{ project.category }} | {{ project.location }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a href="{% url 'all_projects' %}" class="all_projects">View All Projects</a>
+</section>
+
+
+<!-- === Image Gallery Section === -->
+<section class="gallery-section">
+    <h2>Project Gallery</h2>
+
+    <!-- Category Filter Dropdown -->
+    <div class="filter-bar">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            {% for category in categories %}
+                <option value="{{ category|lower }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="galleryGrid">
+        {% for img in all_images %}
+            <div class="gallery-item" data-category="{{ img.category|lower }}">
+                <img src="{{ img.image }}" alt="{{ img.title }}">
+                <p>{{ img.category }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+
+<!-- === Goals / Services Section === -->
+<section class="goals-section">
+    <h2>What I Do</h2>
+    <div class="goals-grid">
+        {% for item in goal_items %}
+            <div class="goal-item">
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    const filterSelect = document.getElementById("categoryFilter");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    filterSelect.addEventListener("change", function () {
+        const selectedCategory = this.value;
+
+        galleryItems.forEach(item => {
+            const itemCategory = item.getAttribute("data-category");
+
+            if (selectedCategory === "all" || itemCategory === selectedCategory) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    });
+</script>
+
+{% endblock %}

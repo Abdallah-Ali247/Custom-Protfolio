@@ -1,0 +1,32 @@
+<!-- templates/contact.html -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact-  {{ site_settings.site_title }}{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/user/contact.css' %}">
+{% endblock %}
+ 
+{% block content %}
+<h2>Contact Me</h2>
+
+{% if success %}
+    <p class="success">Thank you for your message! I'll get back to you soon.</p>
+{% else %}
+    <form method="post">
+        {% csrf_token %}
+        <label>Your Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Your Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Subject:</label><br>
+        <input type="text" name="subject" required><br><br>
+
+        <label>Message:</label><br>
+        <textarea name="message" rows="6" required></textarea><br><br>
+
+        <button type="submit">Send Message</button>
+    </form>
+{% endif %}
+{% endblock %}

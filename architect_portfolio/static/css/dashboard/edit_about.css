@@ -1,0 +1,55 @@
+/* Edit About Page Styling */
+
+h2 {
+    color: var(--dash-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--dash-bg-alt);
+    border: 1px solid var(--dash-border);
+    border-radius: var(--dash-radius);
+    box-shadow: 0 2px 8px var(--dash-shadow);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dash-text);
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--dash-border);
+    border-radius: var(--dash-radius);
+    background-color: var(--dash-bg);
+    color: var(--dash-text);
+    resize: vertical;
+    font-size: 1rem;
+  }
+  
+  button[type="submit"] {
+    background-color: var(--dash-primary);
+    color: #000;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: var(--dash-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 1rem auto 0;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: var(--dash-primary-hover);
+  }
+  

@@ -1,0 +1,33 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block title %}{{ page_title }} - Dashboard{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dashboard/edit_about.css' %}">
+{% endblock %}
+{% block content %}
+<h2>{{ page_title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Full Name:</label>
+    <input type="text" name="full_name" value="{{ about_info.full_name }}" required><br>
+
+    <label>Headline / Role:</label>
+    <input type="text" name="headline" value="{{ about_info.headline }}" required><br>
+
+    <label>Bio:</label><br>
+    <textarea name="bio" rows="6">{{ about_info.bio }}</textarea><br>
+
+    <label>Professional Experience Summary:</label><br>
+    <textarea name="experience_summary" rows="6">{{ about_info.experience_summary }}</textarea><br>
+
+    <label>Education:</label><br>
+    <textarea name="education" rows="6">{{ about_info.education }}</textarea><br>
+
+    <label>Skills (comma-separated):</label><br>
+    <textarea name="skills">{{ about_info.skills }}</textarea><br>
+
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}

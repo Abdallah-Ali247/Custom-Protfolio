@@ -1,0 +1,53 @@
+<!-- templates/dashboard/home.html -->
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block title %}Dashboard Home{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dashboard/dash_home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-overview">
+    <h2>Welcome to the Dashboard</h2>
+    <p>This is the admin panel where you can manage your portfolio website content.</p>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Projects</h3>
+            <p><strong>{{ total_projects }}</strong></p>
+            <a href="{% url 'dashboard_projects' %}" class="btn">Manage Projects</a>
+        </div>
+
+        <div class="stat-card">
+            <h3>Site Title</h3>
+            <p>{{ site_settings.site_title }}</p>
+            <a href="{% url 'dashboard_settings' %}" class="btn">Edit Settings</a>
+        </div>
+
+        <div class="stat-card">
+            <h3>CV Uploaded</h3>
+            <p>{% if current_cv %}Yes{% else %}No{% endif %}</p>
+            <a href="{% url 'dashboard_cv_upload' %}" class="btn">Upload CV</a>
+        </div>
+
+        <div class="stat-card">
+            <h3>About Page</h3>
+            <p>Edit Bio, Skills, Experience</p>
+            <a href="{% url 'dashboard_about_edit' %}" class="btn">Edit About</a>
+        </div>
+    </div>
+
+    <div class="recent-activity">
+        <h3>Recent Activity</h3>
+        <ul>
+            {% if last_project %}
+                <li>🕒 Latest Project: <strong>{{ last_project.title }}</strong> ({{ last_project.year }})</li>
+            {% endif %}
+            {% if current_cv %}
+                <li>📄 CV Uploaded: {{ current_cv.uploaded_at|date:"M d, Y" }}</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

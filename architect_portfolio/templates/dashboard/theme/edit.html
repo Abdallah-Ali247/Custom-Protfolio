@@ -1,0 +1,36 @@
+{% extends "dashboard/base.html" %}
+{% block title %}{{ page_title }} - Dashboard{% endblock %}
+
+{% block content %}
+<h2>{{ page_title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Background Color:</label>
+    <input type="color" name="color_bg" value="{{ theme.color_bg }}">
+    <input type="text" name="color_bg" value="{{ theme.color_bg }}" maxlength="7"><br><br>
+
+    <label>Alt Background:</label>
+    <input type="color" name="color_bg_alt" value="{{ theme.color_bg_alt }}">
+    <input type="text" name="color_bg_alt" value="{{ theme.color_bg_alt }}" maxlength="7"><br><br>
+
+    <label>Text Color:</label>
+    <input type="color" name="color_text" value="{{ theme.color_text }}">
+    <input type="text" name="color_text" value="{{ theme.color_text }}" maxlength="7"><br><br>
+
+    <label>Accent Color:</label>
+    <input type="color" name="color_accent" value="{{ theme.color_accent }}">
+    <input type="text" name="color_accent" value="{{ theme.color_accent }}" maxlength="7"><br><br>
+
+    <label>Accent Hover Color:</label>
+    <input type="color" name="color_accent_hover" value="{{ theme.color_accent_hover }}">
+    <input type="text" name="color_accent_hover" value="{{ theme.color_accent_hover }}" maxlength="7"><br><br>
+
+    <label>Glow Color:</label>
+    <input type="color" name="glow_color" value="{{ theme.glow_color }}">
+    <input type="text" name="glow_color" value="{{ theme.glow_color }}" maxlength="7"><br><br>
+
+    <button type="submit">Save Theme</button>
+</form>
+{% endblock %}

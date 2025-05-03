@@ -1,0 +1,47 @@
+<!-- templates/project_detail.html -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }} - {{ site_settings.site_title }}{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/user/project_details.css' %}">
+{% endblock %}
+ 
+{% block content %}
+
+<div class="project-detail">
+
+    <h2>{{ project.title }}</h2>
+    <div class="project-meta">
+        <p><strong>Category:</strong> {{ project.category }}</p>
+        <p><strong>Location:</strong> {{ project.location }}</p>
+        <p><strong>Year:</strong> {{ project.year }}</p>
+        {% if project.tags %}
+            <p><strong>Tags:</strong> {{ project.tags }}</p>
+        {% endif %}
+    </div>
+
+    <div class="featured-image">
+        <img src="{{ project.featured_image.url }}" alt="{{ project.title }}">
+    </div>
+
+    <div class="project-description">
+        <h3>Description</h3>
+        <p>{{ project.description }}</p>
+    </div>
+
+    {% if extra_images %}
+        <div class="extra-images">
+            <h3>Additional Images</h3>
+            <div class="image-gallery">
+                {% for img in extra_images %}
+                    <div class="image-item">
+                        <img src="{{ img.image.url }}" alt="Project Image">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+<!-- templates/dashboard/settings/settings.html -->
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block title %}{{ page_title }} - Dashboard{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dashboard/settings.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ page_title }}</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Site Title:</label>
+    <input type="text" name="site_title" value="{{ site_settings.site_title }}" required><br>
+
+    <label>About Me / Bio:</label><br>
+    <textarea name="about_me" rows="6">{{ site_settings.about_me }}</textarea><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ site_settings.email }}"><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" value="{{ site_settings.phone }}"><br>
+
+    <label>Address:</label>
+    <input type="text" name="address" value="{{ site_settings.address }}"><br>
+
+    <label>Current Logo:</label><br>
+    {% if site_settings.logo %}
+        <img src="{{ site_settings.logo.url }}" alt="Logo" style="max-width: 200px; height: auto;"><br>
+    {% else %}
+        No logo uploaded.
+    {% endif %}
+    <input type="file" name="logo"><br>
+
+    <label>Current Favicon:</label><br>
+    {% if site_settings.favicon %}
+        <img src="{{ site_settings.favicon.url }}" alt="Favicon" style="width: 32px; height: 32px;"><br>
+    {% else %}
+        No favicon uploaded.
+    {% endif %}
+    <input type="file" name="favicon"><br>
+
+    <h3>Social Media Links</h3>
+    <label>Facebook:</label>
+    <input type="url" name="social_facebook" value="{{ site_settings.social_facebook }}"><br>
+
+    <label>Instagram:</label>
+    <input type="url" name="social_instagram" value="{{ site_settings.social_instagram }}"><br>
+
+    <label>LinkedIn:</label>
+    <input type="url" name="social_linkedin" value="{{ site_settings.social_linkedin }}"><br>
+
+    <button type="submit">Save Settings</button>
+</form>
+{% endblock %}
