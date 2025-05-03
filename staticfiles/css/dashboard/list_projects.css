@@ -1,0 +1,151 @@
+
+
+/* Base Layout */
+.dashboard {
+    background-color: var(--dash-bg);
+    color: var(--dash-text);
+    font-family: var(--dash-font);
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: var(--dash-primary);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Button Style */
+a.btn {
+    display: inline-block;
+    background-color: var(--dash-primary);
+    color: var(--dash-text);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--dash-radius);
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--dash-transition);
+    box-shadow: 0 4px 8px var(--dash-shadow);
+}
+a.btn:active {
+    transform: scale(0.95);
+    transition: transform 0.2s ease-in-out;
+}
+
+td a{
+    border: 1px solid var(--dash-primary);
+}
+td a:first-of-type:hover{
+    background-color: green;
+}
+td a:last-of-type:hover{
+    background-color: red;
+}
+
+a.btn:hover {
+    background-color: var(--dash-primary-hover);
+    box-shadow: 0 6px 12px var(--dash-glow);
+    transform: scale(1.05);
+}
+
+/* Table Style */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+table th, table td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid var(--dash-border);
+    transition: background-color 0.3s;
+}
+
+table th {
+    background-color: var(--dash-bg-alt);
+    color: var(--dash-text);
+    font-size: 1.2rem;
+}
+
+table td {
+    background-color: var(--dash-card-bg);
+    color: var(--dash-text);
+}
+
+table tbody tr:hover {
+    background-color: var(--dash-hover-bg);
+    cursor: pointer;
+}
+
+table tbody tr:active {
+    transform: scale(0.98);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Action Links */
+table td a {
+    color: var(--dash-primary);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.3rem;
+    border-radius: var(--dash-radius);
+    transition: var(--dash-transition);
+}
+
+table td a:hover {
+    color: var(--dash-primary-hover);
+    background-color: var(--dash-hover-bg);
+    box-shadow: 0 2px 4px var(--dash-glow);
+}
+
+/* Empty Message */
+table tr td[colspan="5"] {
+    text-align: center;
+    color: var(--dash-warning);
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Glow Effect */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px var(--dash-glow), 0 0 10px var(--dash-glow);
+    }
+    50% {
+        text-shadow: 0 0 15px var(--dash-glow), 0 0 20px var(--dash-glow);
+    }
+    100% {
+        text-shadow: 0 0 5px var(--dash-glow), 0 0 10px var(--dash-glow);
+    }
+}
+
+/* Pulsating Effect */
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

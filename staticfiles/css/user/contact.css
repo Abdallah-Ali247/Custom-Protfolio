@@ -1,0 +1,129 @@
+
+
+/* Fantasy Theme for Contact Page */
+body {
+  background: var(--bg-color, #1a1a2e);
+  color: var(--text-color, #f3f3f3);
+  /* font-family: 'Cinzel Decorative', cursive; */
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--accent-color);
+  animation: glowText 3s infinite alternate;
+}
+
+form {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 20px var(--primary-color);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 1.5s ease-in;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--accent-color);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+button[type="submit"] {
+  display: block;
+  width: 50%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  border: 1px solid var(--accent-color) !important;
+  border-radius: 25px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  box-shadow: 0 0 15px var(--accent-color);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--primary-color), 0 0 25px var(--accent-color);
+}
+
+.success {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(0, 255, 0, 0.1);
+  color: #b5f9c8;
+  font-size: 1.3rem;
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  animation: fadeIn 1.5s ease-in;
+}
+
+/* Reuse animations */
+@keyframes glowText {
+  0% {
+    text-shadow: 0 0 10px var(--primary-color),
+                 0 0 20px var(--primary-color);
+  }
+  100% {
+    text-shadow: 0 0 20px var(--accent-color),
+                 0 0 30px var(--accent-color);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional sparkle effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(var(--accent-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.05;
+  animation: sparkle 20s linear infinite;
+}
+
+@keyframes sparkle {
+  from { background-position: 0 0; }
+  to { background-position: 100% 100%; }
+}

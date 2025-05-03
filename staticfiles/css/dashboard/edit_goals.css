@@ -1,0 +1,92 @@
+/* Container styling */
+form {
+    background-color: var(--dash-card-bg);
+    padding: var(--dash-padding);
+    border-radius: var(--dash-radius);
+    box-shadow: 0 0 10px var(--dash-shadow);
+    color: var(--dash-text);
+    font-family: var(--dash-font);
+    max-width: 800px;
+    margin: 2rem auto;
+  }
+  
+  /* Goal item block */
+  .goal-item-form {
+    background-color: var(--dash-bg-alt);
+    border: 1px solid var(--dash-border);
+    padding: 1rem;
+    border-radius: var(--dash-radius);
+    margin-bottom: 1.5rem;
+    transition: background-color var(--dash-transition);
+  }
+  
+  .goal-item-form:hover {
+    background-color: var(--dash-hover-bg);
+  }
+  
+  /* Labels and inputs */
+  label {
+    display: block;
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: var(--dash-text);
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: var(--dash-input-bg);
+    border: 1px solid var(--dash-input-border);
+    border-radius: var(--dash-radius);
+    color: var(--dash-text);
+    font-size: 1rem;
+    transition: border-color var(--dash-transition), box-shadow var(--dash-transition);
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: var(--dash-primary);
+    box-shadow: 0 0 5px var(--dash-glow);
+    outline: none;
+  }
+  
+  /* Headings */
+  .goal-item-form h4 {
+    color: var(--dash-accent);
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: var(--dash-primary);
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: var(--dash-radius);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color var(--dash-transition), transform var(--dash-transition);
+    margin-top: 1rem;
+  }
+  
+  button:hover {
+    background-color: var(--dash-primary-hover);
+    transform: scale(1.02);
+  }
+  
+  #add-goal {
+    background-color: var(--dash-secondary);
+    margin-right: 1rem;
+  }
+  
+  #add-goal:hover {
+    background-color: var(--dash-accent);
+  }
+  
+  .goal-item-form input,textarea{
+    width: 95% !important;
+  }
