@@ -14,18 +14,18 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+CSRF_TRUSTED_ORIGINS= [""]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e6g#rr&&o%n%_8(_j)v_t_iqs=&zf5m#o11@6fz7gkbgbx&w$b'
+# SECRET_KEY = 'django-insecure-e6g#rr&&o%n%_8(_j)v_t_iqs=&zf5m#o11@6fz7gkbgbx&w$b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -121,6 +122,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "architect_portfolio/static"
 ]
+STATICSTORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -133,17 +135,27 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'  # or another SMTP server
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'abdallah.ali98.abdallah@gmail.com'  # YOUR email
+# EMAIL_HOST_PASSWORD = ''  # Use App Password if using Gmail
+# DEFAULT_FROM_EMAIL = 'abdallah.ali98.abdallah@gmail.com'
+# SERVER_EMAIL = 'abdallah.ali98.abdallah@gmail.com'
+
+
+
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # or another SMTP server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'abdallah.ali98.abdallah@gmail.com'  # YOUR email
-EMAIL_HOST_PASSWORD = ''  # Use App Password if using Gmail
-DEFAULT_FROM_EMAIL = 'abdallah.ali98.abdallah@gmail.com'
-SERVER_EMAIL = 'abdallah.ali98.abdallah@gmail.com'
-
-
-
-
-
-
+EMAIL_HOST_USER = config('EMAIL_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD') # Use App Password if using Gmail
+DEFAULT_FROM_EMAIL = config('EMAIL_USER')
+SERVER_EMAIL = config('EMAIL_USER')
