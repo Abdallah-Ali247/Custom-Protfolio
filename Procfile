@@ -1,0 +1,1 @@
+web: gunicorn architect_portfolio.wsgi --log-file -
